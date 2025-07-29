@@ -11,8 +11,6 @@ import {
   Building2,
   Clock,
   DollarSign,
-  CheckCircle,
-  Gift,
   Share2,
   Bookmark,
 } from "lucide-react";
@@ -21,7 +19,6 @@ import { useJob } from "@/hooks/use-jobs";
 export default function JobDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  // const { getJob } = useJobs();
   const { data: job } = useJob(id || "");
 
   if (!job) {
@@ -142,48 +139,6 @@ export default function JobDetails() {
                   </div>
                 </CardContent>
               </Card>
-
-              {job.requirements && job.requirements.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <CheckCircle className="h-5 w-5 text-success" />
-                      <span>Requirements</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {job.requirements.map((requirement, index) => (
-                        <li key={index} className="flex items-start space-x-2">
-                          <CheckCircle className="h-4 w-4 text-success mt-0.5 flex-shrink-0" />
-                          <span className="text-sm">{requirement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              )}
-
-              {job.benefits && job.benefits.length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Gift className="h-5 w-5 text-primary" />
-                      <span>Benefits</span>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {job.benefits.map((benefit, index) => (
-                        <li key={index} className="flex items-start space-x-2">
-                          <Gift className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-sm">{benefit}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              )}
             </div>
 
             {/* Sidebar */}

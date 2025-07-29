@@ -21,7 +21,6 @@ import { useAddJob } from "@/hooks/use-jobs";
 
 export default function AddJob() {
   const navigate = useNavigate();
-  // const { addJob } = useJobs();
   const { mutate: addJob } = useAddJob();
 
   const [formData, setFormData] = useState<CreateJobData>({
@@ -31,12 +30,7 @@ export default function AddJob() {
     type: "Full-time",
     description: "",
     salary: "",
-    requirements: [],
-    benefits: [],
   });
-
-  const [requirements, setRequirements] = useState("");
-  const [benefits, setBenefits] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,12 +49,6 @@ export default function AddJob() {
 
     const jobData: CreateJobData = {
       ...formData,
-      requirements: requirements
-        ? requirements.split("\n").filter((req) => req.trim())
-        : [],
-      benefits: benefits
-        ? benefits.split("\n").filter((benefit) => benefit.trim())
-        : [],
     };
 
     // TODO: Implement job posting logic
@@ -197,34 +185,6 @@ export default function AddJob() {
                     rows={6}
                     required
                   />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="requirements">Requirements (Optional)</Label>
-                  <Textarea
-                    id="requirements"
-                    placeholder="Enter each requirement on a new line..."
-                    value={requirements}
-                    onChange={(e) => setRequirements(e.target.value)}
-                    rows={4}
-                  />
-                  <p className="text-sm text-muted-foreground">
-                    One requirement per line
-                  </p>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="benefits">Benefits (Optional)</Label>
-                  <Textarea
-                    id="benefits"
-                    placeholder="Enter each benefit on a new line..."
-                    value={benefits}
-                    onChange={(e) => setBenefits(e.target.value)}
-                    rows={4}
-                  />
-                  <p className="text-sm text-muted-foreground">
-                    One benefit per line
-                  </p>
                 </div>
 
                 <div className="flex space-x-4 pt-6">

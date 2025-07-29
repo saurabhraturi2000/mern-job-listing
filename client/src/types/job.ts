@@ -8,8 +8,6 @@ export interface Job {
   type: JobType;
   description: string;
   salary?: string;
-  requirements?: string[];
-  benefits?: string[];
   createdAt: Date;
   logoUrl?: string;
 }
@@ -21,6 +19,4 @@ export interface CreateJobData {
   type: JobType;
   description: string;
   salary?: string;
-  requirements?: string[];
-  benefits?: string[];
 }
