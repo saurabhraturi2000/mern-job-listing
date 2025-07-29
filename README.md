@@ -23,7 +23,7 @@ mer-job-listing/
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/mer-job-listing.git
+git clone https://github.com/saurabhraturi2000/mern-job-listing.git
 cd mer-job-listing
 ```
 
@@ -42,10 +42,8 @@ VITE_API_URL=http://localhost:5000/api
 ```env
 PORT=5000
 NODE_ENV=development
-MONGO_URI=mongodb+srv://saurabhraturi2000:8882719082@cluster0.xr6gnmp.mongodb.net/job-listing
+MONGO_URI= Your Mongo DB URI
 ```
-
-> ⚠️ **Important:** Replace sensitive credentials in `MONGO_URI` with a secure environment variable when deploying.
 
 ---
 
@@ -95,21 +93,7 @@ This will concurrently start:
 
 ---
 
-## 🔐 Security Notes
-
-- Never commit your actual MongoDB credentials or `.env` files to version control.
-- Use `.env.example` for reference.
-- Use `dotenv-safe` or `.env.local` for deployment environments.
-
----
-
 ## 🛠 Scripts
-
-From the root directory:
-
-```bash
-npm run dev       # Starts both client and server
-```
 
 From individual folders:
 
