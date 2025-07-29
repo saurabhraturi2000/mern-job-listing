@@ -61,7 +61,7 @@ export function JobCard({ job }: JobCardProps) {
             </div>
             <div className="flex items-center space-x-1">
               <Clock className="h-4 w-4" />
-              <span>{job.createdAt.toLocaleDateString()}</span>
+              <span>{new Date(job.createdAt).toLocaleDateString()}</span>
             </div>
           </div>
 
@@ -82,7 +82,7 @@ export function JobCard({ job }: JobCardProps) {
               className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
             >
               <Link
-                to={`/job/${job.id}`}
+                to={`/job/${job._id}`}
                 className="flex items-center justify-center space-x-2"
               >
                 <span>View Details</span>

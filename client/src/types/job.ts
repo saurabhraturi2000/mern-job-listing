@@ -1,7 +1,7 @@
 export type JobType = "Full-time" | "Part-time" | "Contract" | "Internship";
 
 export interface Job {
-  id: string;
+  _id: string;
   title: string;
   company: string;
   location: string;

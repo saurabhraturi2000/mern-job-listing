@@ -16,11 +16,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { JobType, CreateJobData } from "@/types/job";
 import { toast } from "sonner";
 import { Briefcase, ArrowLeft } from "lucide-react";
-import { useJobs } from "@/context/JobContext";
+// import { useJobs } from "@/context/JobContext";
+import { useAddJob } from "@/hooks/use-jobs";
 
 export default function AddJob() {
   const navigate = useNavigate();
-  const { addJob } = useJobs();
+  // const { addJob } = useJobs();
+  const { mutate: addJob } = useAddJob();
 
   const [formData, setFormData] = useState<CreateJobData>({
     title: "",

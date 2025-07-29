@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { useJobs } from "@/context/JobContext";
 import { JobCard } from "@/components/JobCard";
 import { Navigation } from "@/components/Navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import type { JobType } from "@/types/job";
 import { Search, Filter } from "lucide-react";
+import { useJobs } from "@/hooks/use-jobs";
 // import heroImage from "@/assets/hero-jobs.jpg";
 
 export default function Homepage() {
-  const { jobs } = useJobs();
+  const { data: jobs, isLoading, error } = useJobs();
+  // const { jobs } = useJobs();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedType, setSelectedType] = useState<JobType | "All">("All");
 
@@ -21,7 +22,10 @@ export default function Homepage() {
     "Internship",
   ];
 
-  const filteredJobs = jobs.filter((job) => {
+  if (isLoading) return <p>Loading...</p>;
+  if (error instanceof Error) return <p>Error: {error.message}</p>;
+
+  const filteredJobs = jobs!.filter((job) => {
     const matchesSearch =
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -75,7 +79,7 @@ export default function Homepage() {
         {filteredJobs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredJobs.map((job) => (
-              <JobCard key={job.id} job={job} />
+              <JobCard key={job._id} job={job} />
             ))}
           </div>
         ) : (

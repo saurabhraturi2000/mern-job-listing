@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useJobs } from "@/context/JobContext";
+// import { useJobs } from "@/context/JobContext";
 import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,13 +16,13 @@ import {
   Share2,
   Bookmark,
 } from "lucide-react";
+import { useJob } from "@/hooks/use-jobs";
 
 export default function JobDetails() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { getJob } = useJobs();
-
-  const job = id ? getJob(id) : undefined;
+  // const { getJob } = useJobs();
+  const { data: job } = useJob(id || "");
 
   if (!job) {
     return (
@@ -116,7 +116,9 @@ export default function JobDetails() {
                     </div>
                     <div className="flex items-center text-muted-foreground">
                       <Clock className="h-4 w-4 mr-1" />
-                      <span>Posted {job.createdAt.toLocaleDateString()}</span>
+                      <span>
+                        Posted {new Date(job.createdAt).toLocaleDateString()}
+                      </span>
                     </div>
                     {job.salary && (
                       <div className="flex items-center text-muted-foreground">
